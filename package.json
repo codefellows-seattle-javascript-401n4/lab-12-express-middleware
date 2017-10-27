@@ -1,0 +1,28 @@
+{
+  "name": "lab-12-express-middleware",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) 12: Express Middleware ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goozgooz/lab-12-express-middleware.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goozgooz/lab-12-express-middleware/issues"
+  },
+  "homepage": "https://github.com/goozgooz/lab-12-express-middleware#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "jest": "^21.2.1",
+    "mongoose": "^4.12.4"
+  }
+}
