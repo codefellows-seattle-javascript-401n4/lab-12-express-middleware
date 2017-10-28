@@ -9,4 +9,8 @@ const wizardSchema = new mongoose.Schema({
 });
 
 
-const Wizard = module.exports = mongoose.model('Wizard', wizardSchema);
+const Wizard = module.exports = mongoose.model('Wizard', wizardSchema); 
+
+
+// http :5000/api/v1/wizards
+// echo '{"name":"gandalf","weapon":"staff","enemy":"sauron"}' | http POST :5000/api/v1/wizards
