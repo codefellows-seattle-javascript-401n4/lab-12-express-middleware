@@ -20,7 +20,7 @@ routes.get = ((req, res, next) => {
     if (ToDo.allToDos[req.query.id]) {
       return res.status(200).send(ToDo.allToDos[req.query.id]);
     }
-    let error = new ServerError(400, 'need a task to do')
+    let error = new ServerError(404, 'that id does not match an item')
     return next(error);
   }
   let sendBody = ToDo.allToDos;
