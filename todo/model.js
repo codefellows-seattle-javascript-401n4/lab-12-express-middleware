@@ -55,17 +55,11 @@ ToDo.loadAll = function(){
   });
 };
 
-ToDo.loadAll = function(){
-  return new Promise(function(resolve, reject) {
-    fs.readJson(db)
-      .then(packageObj => {
-        ToDo.allToDos = packageObj;
-        resolve(packageObj);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+ToDo.availIDs = function(){
+  let allIDs = Object.keys(ToDo.allToDos).map(key => {
+    return key
+  })
+  return allIDs;
 };
 
 module.exports = ToDo;

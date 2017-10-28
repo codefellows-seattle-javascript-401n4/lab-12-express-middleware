@@ -15,21 +15,32 @@ routes.post = ((req, res, next) => {
   return res.status(200).send(`success ${JSON.stringify(newpost)}`);
 });
 
-routes.get = ((req, res, next) => {
-  if (req.query.id) {
-    if (ToDo.allToDos[req.query.id]) {
-      return res.status(200).send(ToDo.allToDos[req.query.id]);
-    }
-    let error = new ServerError(404, 'that id does not match an item')
-    return next(error);
-  }
+routes.sendAll = ((req, res, next) => {
   let sendBody = ToDo.allToDos;
   if (sendBody) {
     return res.status(200).send(sendBody);
   }
   let error = new ServerError(404, 'good god something has gone really wrong')
   next(error);
+})
+
+routes.get = ((req, res, next) => {
+  if (req.query) {
+    if (req.query.id) {
+      if (ToDo.allToDos[req.query.id]) {
+        return res.status(200).send(ToDo.allToDos[req.query.id]);
+      }
+      let error = new ServerError(404, 'that id does not match an item')
+      return next(error);
+    }
+    if (req.query.allIDs) {
+      let allIds = ToDo.availIDs();
+      return res.status(200).send(allIds);
+    }
+  }
+  routes.sendAll(req, res, next)
 });
+
 
 routes.delete = ((req, res, next) => {
   if (req.query.id) {
