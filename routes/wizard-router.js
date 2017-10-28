@@ -13,6 +13,14 @@ wizardRouter.get('/wizards', (req, res, next) => {
     .catch(err => next({error: err}));
 });
 
+// get a specific wizard from database
+wizardRouter.get('/wizards/:id', (req, res, next) => {
+  let desiredWizard = req.params.id;
+  Wizard.findOne({_id: desiredWizard})
+    .then(res.send.bind(res))
+    .catch(err => next({error: err}));
+}); 
+
 wizardRouter.post('/wizards', jsonParser, (req, res, next) => {
   let newWizard = new Wizard(req.body);
   newWizard.save()
