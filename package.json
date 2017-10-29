@@ -4,7 +4,7 @@
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) 12: Express Middleware ======",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
     "fs-extra": "^4.0.2",
     "http-errors": "^1.6.2",
     "jest": "^21.2.1"
+  },
+  "devDependencies": {
+    "superagent": "^3.8.0"
   }
 }
