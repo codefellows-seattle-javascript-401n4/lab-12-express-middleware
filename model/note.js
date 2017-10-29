@@ -21,9 +21,12 @@ class Note {
 
       this.fetchNote(id)
         .then(note => {
-          note.content = body.content;
-          note.title = body.title;
-          resolve(note);
+          let note2 = note;
+          note2.content = body.content;
+          note2.title = body.title;
+          store.deleteItem(id);
+          store.saveNote(note2);
+          resolve(note2);
         })
         .catch(err => reject(err));
     });
