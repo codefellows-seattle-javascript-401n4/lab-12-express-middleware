@@ -22,10 +22,11 @@ wizardRouter.get('/wizards/:id', (req, res, next) => {
 
 // save a new wizard to database
 wizardRouter.post('/wizards', jsonParser, (req, res, next) => {
+  if(!req.body.name) return res.status(400).send('no wizard name given');
   let newWizard = new Wizard(req.body);
   newWizard.save()
     .then(res.send.bind(res))
-    .catch(err => next({error:err}));
+    .catch(err => next({error:err, status: 400}));
 });
 
 // update a specific wizard 
