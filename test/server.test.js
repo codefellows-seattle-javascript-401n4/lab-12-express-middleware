@@ -10,9 +10,13 @@ describe('api/contacts', function() {
 
   beforeAll((done) => {
     require('../lib/_server').start(process.env.PORT);
+
+    //create a test note
     done();
   });
   afterAll((done) => {
+    
+    //delete test note
     require('../lib/_server').stop();
     done();
   });

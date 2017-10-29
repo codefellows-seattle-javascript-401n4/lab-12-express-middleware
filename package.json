@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/Pmookerjee/lab-12-express-middleware#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
     "http-errors": "^1.6.2",
     "jest": "^21.2.1"
   }

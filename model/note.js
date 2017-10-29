@@ -1,6 +1,8 @@
 'use strict';
 
 const uuid = require('uuid/v1');
+const notes = __dirname + '/../model/notes.json';
+const store = require('../lib/storage')(notes);
 
 class Note {
 
@@ -13,18 +15,48 @@ class Note {
 
   }
 
-  updateNote(data) {
+  static updateNote(id, body) {
 
+    return new Promise ((resolve, reject) => {
+
+      this.fetchNote(id)
+        .then(note => {
+          note.content = body.content;
+          note.title = body.title;
+          resolve(note);
+        })
+        .catch(err => reject(err));
+    });
   }
 
-  fetchNote(id) {
+  static fetchNote(id) {
 
+    return new Promise ((resolve, reject) => {
+
+      store.getAllNotes()
+      .then(note => {
+        if(note[id]) resolve(note[id]);
+        else reject(); })
+      .catch(err => reject(err));
+
+    });
   }
 
-  fetchIDs() {
+  static fetchIDs() {
 
+    return new Promise ((resolve, reject) => {
+
+      store.getAllNotes()
+        .then(allNotes => {
+          let ids = [];
+          for(var key in allNotes) {
+            if(allNotes.hasOwnProperty(key)) ids.push(allNotes[key].id);
+          }
+          resolve(ids);
+        })
+        .catch(err => { reject(err); });
+    });
   }
-  
 }
 
 module.exports = Note;
