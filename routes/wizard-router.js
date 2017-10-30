@@ -16,7 +16,10 @@ wizardRouter.get('/wizards', (req, res, next) => {
 // get a specific wizard from database
 wizardRouter.get('/wizards/:id', (req, res, next) => {
   Wizard.findOne({_id: req.params.id})
-    .then(res.send.bind(res))
+    .then((wizard) => {
+      if(wizard === null) return res.status(404).send('wizard ID not valid');
+      res.status(200).send(wizard);
+    })
     .catch(err => next({error: err}));
 }); 
 

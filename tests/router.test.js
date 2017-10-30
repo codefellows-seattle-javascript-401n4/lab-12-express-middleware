@@ -42,5 +42,24 @@ describe('testing wizard router', () => {
         });
     });
   });
+
+  describe('get request', () => {
+    test('should return the Wizard if the ID exists', () => {
+      let testWizard = new Wizard({name: 'Severus Snape'}).save()
+        .then((wizard) => {
+          return request.get(url + '/' + wizard.id)
+            .then(res => {
+              expect(res.status).toBe(200);
+              expect(res.body.name).toBe('Severus Snape');
+            });
+        });
+    });
+    test('should return status 404 if ID given does not exsit', () => {
+      return request.get(url + '/' + '59f66055aedd7c6ca9934469')
+        .catch(res => {
+          expect(res.status).toBe(404);
+        });
+    });
+  });
   
 });
