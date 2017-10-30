@@ -2,11 +2,11 @@
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect(process.env.TEST_DB || 'mongodb://localhost:27017/pokemon', {useMongoClient: true});
+mongoose.connect('mongodb://localhost:27017/pokemon', {useMongoClient: true});
 
 const app  = module.exports = require('express')();
 
-app.use('/api/v1', require(__dirname + '/../routes/router.js'));
+app.use('/api/v1', require(__dirname + '/../routes/pokeRouter.js'));
 
 app.use((err, req, res, next) => {
   console.log(err.error);
