@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+    $.get('http://localhost:3000/flowers')
+    .then((result) => {
+      console.log(result);
+      $('body').prepend(result);
+    }, (err) => console.log(err));
+    </script>
+
+  </body>
+</html>
