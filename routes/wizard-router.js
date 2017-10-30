@@ -34,9 +34,13 @@ wizardRouter.post('/wizards', jsonParser, (req, res, next) => {
 
 // update a specific wizard 
 wizardRouter.put('/wizards/:id', jsonParser, (req,res, next) => {
+  if(!req.body.name) return res.status(400).send('no wizard name given');
   Wizard.findOneAndUpdate({_id: req.params.id}, req.body)
-    .then(res.send('PUT request success'))
-    .catch(err => next({error: err}));
+    .then(wizard => {
+      if(wizard === null) return res.status(404).send('wizard ID not valid');
+      res.send('PUT success!');
+    })
+    .catch(console.log);
 });
 
 // delete a specific wizard 
