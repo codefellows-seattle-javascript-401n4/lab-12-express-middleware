@@ -1,35 +1,49 @@
-![cf](https://i.imgur.com/7v5ASc8.png) 12: Express Middleware
-======
+*lib/_server.js*  Defines routes for the note model.
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+_GET /api/notes/_ Returns all notes
 
-## Learning Objectives  
-* students will be able to work with application, router, and 3rd party middleware through the use of express.js
-* students will be able to implement custom middleware through the use of express.js
-* students will be able to create custom routers for a specific resource
+_GET /api/notes/:id_  REturns a specific note, if matches ID
 
-## Requirements
+      -Returns a 404 if invalid ID is given
 
-#### Configuration
-* `package.json`
-* `.eslintrc`
-* `.gitignore`
-* `README.md`
-  * your `README.md` should include detailed instructions on how to use your API
+_POST /api/notes/_ Returns resource for valid body-parser
 
-#### Feature Tasks
-* create a single resource `express` API that can handle **GET**, **POST**, and **PUT** requests
-* use the `http-errors` module to create new errors and associate them with a proper status code
-* create an `error-middleware` module to handle errors and *use* it in your server file
-* create a `cors-middleware` module that will allow for public use of your API
-* create the `deleteItem` and `availIDs` methods and add them to your `storage` module
-  * these methods should be used to delete a resource (`deleteItem`) and return an array of id's from persisted resource filenames (`availIDs`)
-* create the `updateNote`, `fetchNote`, and `fetchIDs` static methods as part of your `Note` model
-* create a series of `note-route-tests` to test your **GET**, **POST**, and **PUT** routes
-  * **hint:** *you'll want to use the `before` and `after` hooks provided by `mocha` in order to create a test note and delete the note after the test has completed*
+      -REturns a 400 if no body is provided
+
+_PUT /api/notes/_ Returns a 200 with success message if valid id is provided.
+
+      -Returns a 404 if invalid ID is given
+      -REturns a 400 if no ID or no content is given
+
+_PATCH /api/notes/_ Returns a 200 with success message if valid id is provided.
+
+      -Returns a 404 if invalid ID is given
+      -REturns a 400 if no ID or no content is given
+
+_DELETE /api/notes/_  Deletes note if provided ID is a matches
+
+      -Otherwise returns a 500 server error
+
+*models/note* Note class constructor.
+
+  _updateNote(id, body)_  takes in an ID (string) and response body and returns an updated Note.
+
+  _fetchNote(id)_  takes in an ID (string) and returns the matching note
+
+  _fetchIDs()_  returns all IDs from the notes in notes.json
+
+  *lib/error-middleware*
+    returns the response body, status code and message (uses http-errors) and is called from final app.use() when an error is thrown
+
+*lib/storage*   
+
+   Is instantiated with a notes.json db file from server.js as well as note.js.
+
+   _getAllNotes()_ reads notes.json file and returns array of notes
+
+   _saveNote(note)_ takes in response body and saves a note to file
+
+   _deleteItem(id)_ takes in an id (string) and deletes the matching note from file.
+
+
+*__test__* use `npm test` to run
