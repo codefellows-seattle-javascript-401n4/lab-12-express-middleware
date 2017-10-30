@@ -9,4 +9,4 @@ const catSchema = new mongoose.Schema({
   favoriteFood: {type: String, default: 'meow mix'},
 
 });
-const Cat = module.exports = mongoose.model('cats', catSchema);
+module.exports = mongoose.model('Cat', catSchema);
