@@ -27,6 +27,20 @@ class Note {
 
     });
   }
+
+  static fetchID(id) {
+
+    return new Promise((resolve, reject) => {
+      if (!storage[id]) reject();   
+      storage.getItems()
+        .then(getItems => {
+          storage[id] = Object.assign(storage[id], getItems);
+          resolve(storage);
+        })
+        .catch(err => { reject(err); });
+    });
+  }
+ 
   static updateNote(id, _note) {
     
     return new Promise ((resolve, reject) => {

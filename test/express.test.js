@@ -120,6 +120,18 @@ describe('api/notes', function() {
         });
     });
 
+    test('should return an array of note IDs if no id is given', () => {
+      
+      return superagent.get('http://localhost:5500/api/notes')
+        .then(res => {
+          expect(res.body).toContain(noteID);
+          expect(res.status).toEqual(200);
+        })
+        .catch(res => {
+          expect(res.status).toEqual(400);
+        });
+    });
+
   });
 
   describe('DELETE /api/notes', () => {
