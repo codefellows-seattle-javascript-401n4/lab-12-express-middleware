@@ -2,12 +2,13 @@
 
 const ToDo = require('./model.js');
 const ServerError = require('../lib/error');
+const storage = require('../lib/storage');
 
 let routes = module.exports = {};
 
 routes.post = ((req, res, next) => {
   if (!req.body.task) {
-    let error = new ServerError(400, 'need a task to do')
+    let error = new ServerError(400, 'need a task to do');
     return next(error);
   }
   let newpost = new ToDo(req.body);
@@ -20,9 +21,9 @@ routes.sendAll = ((req, res, next) => {
   if (sendBody) {
     return res.status(200).send(sendBody);
   }
-  let error = new ServerError(404, 'good god something has gone really wrong')
-  next(error);
-})
+  let error = new ServerError(404, 'good god something has gone really wrong');
+  return next(error);
+});
 
 routes.get = ((req, res, next) => {
   if (req.query) {
@@ -30,15 +31,15 @@ routes.get = ((req, res, next) => {
       if (ToDo.allToDos[req.query.id]) {
         return res.status(200).send(ToDo.allToDos[req.query.id]);
       }
-      let error = new ServerError(404, 'that id does not match an item')
+      let error = new ServerError(404, 'that id does not match an item');
       return next(error);
     }
     if (req.query.allIDs) {
-      let allIds = ToDo.availIDs();
+      let allIds = storage.availIDs(ToDo.allToDos);
       return res.status(200).send(allIds);
     }
   }
-  routes.sendAll(req, res, next)
+  return routes.sendAll(req, res, next);
 });
 
 
@@ -52,7 +53,7 @@ routes.delete = ((req, res, next) => {
         return res.status(200).send('deleted!');
       });
     } else {
-      let error = new ServerError(404, 'not found')
+      let error = new ServerError(404, 'not found');
       return next(error);
     }
   }

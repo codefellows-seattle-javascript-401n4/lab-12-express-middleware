@@ -2,6 +2,8 @@
 const ToDo = require('./model.js');
 let fs = require('fs-extra');
 
+//Test data
+ToDo.allToDos = {};
 //from John's lab-09 testing examples
 let mockReadJson = (file) => {
   let json = {
@@ -49,15 +51,6 @@ describe('to do constructor', function() {
       return newtodo.addToDo()
         .then(() => {
           expect(ToDo.allToDos[newtodo.id].task).toEqual('do more stuff');
-        });
-    });
-  });
-
-  describe('loadAll', () => {
-    it('will get all the todos in the file', () => {
-      return ToDo.loadAll()
-        .then(all => {
-          expect(all.id).toEqual('id');
         });
     });
   });

@@ -1,6 +1,11 @@
-/*global expect*/
+/*global beforeAll, expect*/
 
 const route = require('./route');
+const storageManger = require('../lib/storage');
+const ToDo = require('./model.js');
+
+
+storageManger.loadAll(ToDo);
 
 //mocks
 let Res = function(){};
@@ -18,20 +23,24 @@ Res.prototype.send = function(body) {
 let res = new Res();
 
 let next = function(error){
-  return error
-}
+  return error;
+};
 
 describe('To Do routes', () => {
+  beforeAll(() => {
+    storageManger.loadAll(ToDo);
+  });
   describe('get', () => {
-    it('gets all the todos if no id passed', () => {
+    test('gets all the todos if no id passed', () => {
       let req = {};
       req.query = {};
       req.body = {};
       let test = route.get(req, res, next);
-      expect(typeof test).toEqual('object');
+      expect(test.code).toEqual(200);
+      expect(test.body).toEqual({});
     });
 
-    it('throws an 404 if the todo is not found', () => {
+    test('throws an 404 if the todo is not found', () => {
       let req = {};
       req.query = {};
       req.body = {};
@@ -39,12 +48,11 @@ describe('To Do routes', () => {
       let returned = route.get(req, res, next);
 
       expect(returned.status).toEqual(404);
-      expect(returned.message).toEqual('that id does not match an item');
     });
   });
 
   describe('post', () => {
-    it('returns 200 if body sent', () => {
+    test('returns 200 if body sent', () => {
 
       let req = {};
       req.query = {};
@@ -56,7 +64,7 @@ describe('To Do routes', () => {
 
     });
 
-    it('returns 400 if no task', () => {
+    test('returns 400 if no task', () => {
 
       let req = {};
       req.query = {};
@@ -65,13 +73,12 @@ describe('To Do routes', () => {
       let returned = route.post(req, res, next);
 
       expect(returned.status).toEqual(400);
-      expect(returned.message).toEqual('need a task to do');
     });
   });
 
   describe('delete', () => {
 
-    it('throws an 404 if the todo is not found', () => {
+    test('throws an 404 if the todo is not found', () => {
 
       let req = {};
       req.query = {};
@@ -80,7 +87,6 @@ describe('To Do routes', () => {
       let returned = route.delete(req, res, next);
 
       expect(returned.status).toEqual(404);
-      expect(returned.message).toEqual('not found');
     });
   });
 });
