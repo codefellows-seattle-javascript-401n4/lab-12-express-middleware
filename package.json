@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/namgungssi/lab-12-express-middleware/issues"
   },
-  "homepage": "https://github.com/namgungssi/lab-12-express-middleware#readme"
+  "homepage": "https://github.com/namgungssi/lab-12-express-middleware#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.6"
+  }
 }
