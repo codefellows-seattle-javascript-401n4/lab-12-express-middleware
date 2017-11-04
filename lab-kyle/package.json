@@ -20,12 +20,7 @@
   },
   "homepage": "https://github.com/krichey15/lab-12-express-middleware#readme",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "body-parser": "^1.18.2",
-    "expect": "^21.2.1",
     "express": "^4.16.2",
-    "jest": "^21.2.1",
-    "mongodb": "^2.2.33",
-    "mongoose": "^4.12.5"
+    "mongodb": "^2.2.33"
   }
 }
