@@ -1,7 +1,6 @@
 'use strict';
 
-const express = require('express');
-const app =  express();
+const app = require('/server.js');
 
 app.get('/success', (req, res, next) => {
   res.send('successful GET');

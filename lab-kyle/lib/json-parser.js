@@ -1,7 +1,6 @@
 'use strict';
 
-const express = require(express);
-const app = express();
+const app = require('/server.js');
 
 app.use((req, res, next) => {
   let text = '';
@@ -10,7 +9,7 @@ app.use((req, res, next) => {
     try {
       req.text = text;
       if(req.headers['content-type'] === 'application/json'){
-        req.body =JSON.parse(text);
+        req.body = JSON.parse(text);
       }
     } catch(err) {
       next({statusCode: 422, message: 'invalid JSON', error: err});

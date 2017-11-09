@@ -1,7 +1,6 @@
 'use strict';
 
-const express = require('express');
-const app = express();
+const app = require('/server.js');
 
 app.use((req, res, next) => {
   console.log('from .use middleware');
