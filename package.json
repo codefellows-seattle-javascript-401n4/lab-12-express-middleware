@@ -1,0 +1,27 @@
+{
+  "name": "lab-12-express-middleware",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) 12: Express Middleware ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarDavis/lab-12-express-middleware.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarDavis/lab-12-express-middleware/issues"
+  },
+  "homepage": "https://github.com/DarDavis/lab-12-express-middleware#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.4"
+  }
+}
