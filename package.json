@@ -4,7 +4,8 @@
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) 12: Express Middleware ======",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,13 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "fs-extra": "^4.0.2",
-    "mongoose": "^4.12.6"
-  }
+    "mongoose": "^4.13.2"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {}
 }
