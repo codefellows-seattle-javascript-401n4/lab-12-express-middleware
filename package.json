@@ -30,7 +30,10 @@
     "schema": "^0.2.1"
   },
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "test": "test"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
 }
