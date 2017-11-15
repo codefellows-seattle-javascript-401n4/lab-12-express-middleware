@@ -3,25 +3,25 @@
 
 
 const server = require ('../lib/server.js');
+const superagent = require ('superagent');
 const Music = require ('../model/music.js');
 const Genre = require ('../model/genre.js');
-const superagent = require ('superagent');
 
 
 
 describe ('lab 12 test', function () {
-  beforeAll ( () => {
+  beforeAll (() => {
     server.start ();
     return Genre.remove ( {} );
   });
 
 
-  beforeAll ( () => {
+  beforeAll (() => {
     return Music.remove ( {} );
   });
 
 
-  afterAll ( () => {
+  afterAll (() => {
     server.stop ();
   });
 
@@ -45,7 +45,7 @@ describe ('lab 12 test', function () {
         return superagent.post ('http://localhost:3000/genre')
         .set ('content-type', 'application / json')
         .send ( {
-          name : 'jazz',
+          name : 'jazz'
         })
 
         .then (res => {
@@ -107,7 +107,7 @@ describe ('lab 12 test', function () {
         .set ('content-type', 'application/json')
         .send ( {
           name : 'piano',
-          genre : 'jazz',
+          genre : 'jazz'
         })
         .then (res => {
           let text = JSON.parse (res.text);
@@ -144,7 +144,7 @@ describe ('lab 12 test', function () {
 
 
     test ('should call 404 for error id', function () {
-      return superagent.get ('http://localhost:3000/2')
+      return superagent.get ('http://localhost:3000/sports')
       .then (Promise.reject)
       .catch (res => {
         expect (res.status).toBe (404);
@@ -207,7 +207,7 @@ describe ('lab 12 test', function () {
 
 
     test ('should respond 400 error id', function () {
-      return superagent.delete ('http://localhost:3000/genre/2')
+      return superagent.delete ('http://localhost:3000/genre/sports')
       .then (Promise.reject)
       .catch (res => {
         expect (res.status).toBe (404);
@@ -215,4 +215,4 @@ describe ('lab 12 test', function () {
     });
   });
 });
-}
+};
