@@ -1,4 +1,6 @@
 'use strict';
 
-require ('dotenv').config ();
-require ('./lib/server.js').start(process.env.PORT || 3000);
+
+
+require('dotenv').config();
+require('./lib/_server').start(process.env.PORT);

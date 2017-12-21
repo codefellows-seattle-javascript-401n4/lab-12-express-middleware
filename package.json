@@ -2,7 +2,28 @@
   "name": "lab-12-express-middleware",
   "version": "1.0.0",
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) 12: Express Middleware ======",
-  "main": "server.js",
+  "main": "note.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.11.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
+    "jest": "^21.2.1",
+    "mongoose": "^4.13.2",
+    "request": "^2.83.0",
+    "schema": "^0.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
   "scripts": {
     "test": "jest",
     "start": "node server.js"
@@ -14,31 +35,10 @@
   "keywords": [
     "[]"
   ],
-  "author": "\"\"",
+  "author": "brian namgung",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/namgungssi/lab-12-express-middleware/issues"
   },
-  "homepage": "https://github.com/namgungssi/lab-12-express-middleware#readme",
-  "dependencies": {
-    "bluebird": "^3.5.1",
-    "body-parser": "^1.18.2",
-    "chai": "^4.1.2",
-    "dotenv": "^4.0.0",
-    "express": "^4.16.2",
-    "fs-extra": "^4.0.2",
-    "mocha": "^4.0.1",
-    "mongoose": "^4.13.2",
-    "request": "^2.83.0",
-    "schema": "^0.2.1"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "devDependencies": {
-    "eslint": "^4.11.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "jest": "^21.2.1"
-  }
+  "homepage": "https://github.com/namgungssi/lab-12-express-middleware#readme"
 }
