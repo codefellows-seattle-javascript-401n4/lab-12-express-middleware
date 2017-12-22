@@ -5,24 +5,28 @@
   "main": "note.js",
   "directories": {
     "lib": "lib",
-    "test": "test"
+    "test": "jest"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "eslint": "^4.11.0",
     "eslint-plugin-babel": "^4.1.2",
+    "expect": "^22.0.3",
     "express": "^4.16.2",
-    "fs-extra": "^4.0.2",
+    "fs-extra": "^4.0.3",
     "jest": "^21.2.1",
     "mongoose": "^4.13.2",
     "request": "^2.83.0",
-    "schema": "^0.2.1"
+    "schema": "^0.2.1",
+    "superagent": "^3.8.2",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "jest": "^4.0.1"
   },
   "scripts": {
     "test": "jest",
