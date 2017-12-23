@@ -6,6 +6,8 @@ const uuid = require('uuid/v1');
 const notes = __dirname + '/../model/notes.json';
 const store = require('../lib/storage')(notes);
 
+
+
 class Note {
   constructor(data) {
     this.id = uuid();
