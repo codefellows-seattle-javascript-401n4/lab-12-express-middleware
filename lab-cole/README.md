@@ -12,7 +12,7 @@ Enter in Command Line
 
 
 ## Current Program Status
-* copied code base from demo, need to implement self code to it.
+* started over with starter code, developer code pending
 
 
 ## Developer Installs
