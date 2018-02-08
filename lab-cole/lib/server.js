@@ -1,14 +1,53 @@
 'use strict';
 
-const mongoose = require ('mongoose'); //still need to install mongoose
-mongoose.Promise = require('bluebird'); //still need to install bluebird or whatever that is...
-mongoose.connect('mongodb://localhost:27017/notes', {useMongoClient: true}); //process.env.DB_URL, need to figure out what this is
+// require deps
+const express = require('express');
+const mongoose = require('mongoose');
+// enable promises
+mongoose.Promise = Promise;
+mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});
 
-const app = module.exports = require('express')();
+// express is a factory function 
+const app = express();
+let isOn = false;
+let http = null;
 
-app.use('/api/v1', require(__dirname + '/routes/routes.js'));
+// register middleware 
+app.use(require('./logger-middleware.js'));
 
-app.use((err, req, res, next) => {
-    console.log(err.error);
-    res.status(err.statusCode || 500).send(err.message || 'server error');
-});
+// register routes
+app.use(require('../route/note-router.js'));
+
+// register 404 route
+app.all('*', (req, res) => res.sendStatus(404));
+
+// register error handler
+app.use(require('./error-middleware.js'));
+
+module.exports = {
+  start: () => {
+    return new Promise((resolve, reject) => {
+      if(isOn)
+        return reject(new Error('__SERVER_ERROR__ server is allready on'));
+      http = app.listen(process.env.PORT, () => {
+        isOn = true;
+        console.log('__SERVER_ON__', process.env.PORT);
+        resolve();
+      });
+    });
+  },
+  stop: () => {
+    return new Promise((resolve, reject) => {
+      if(!isOn)
+        return reject(new Error('__SERVER_ERROR__ server is allready off'));
+      if(!http)
+        return reject(new Error('__SERVER_ERROR__ there is no server to close'));
+      http.close(() => {
+        isOn = false;
+        http = null;
+        console.log('__SERVER_OFF__');
+        resolve();
+      });
+    });
+  },
+};

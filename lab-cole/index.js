@@ -1,7 +1,6 @@
 'use strict';
 
-var server = require('./lib/server.js')
-
-server.listen(port, cb) {
-
-};
+// load environment
+require('dotenv').config();
+// start server
+require('./lib/server.js').start();
