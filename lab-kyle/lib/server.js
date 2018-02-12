@@ -1,5 +1,7 @@
 'use strict';
 
+const debug = require('debug')('http:server');
+
 const PORT = process.env.PORT || 3000;
 const express = require('express');
 const router = express.Router();

@@ -1,5 +1,7 @@
 'use strict';
 
+const debug = require('debug')('http:storage');
+
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'), {suffix: 'Prom'});
 const createError = require('http-errors');
@@ -8,6 +10,7 @@ const Doggo = require('../model/doggo');
 const storage = module.exports = {};
 
 storage.create = function(item){
+  debug('#create');
   return new Promise((resolve, reject) => {
     if(!item.name) return reject(createError(400, 'cannot create; name required'));
     if(!item.breed) return reject(createError(400, 'cannot create; breed required'));
@@ -21,6 +24,7 @@ storage.create = function(item){
 };
 
 storage.fetchOne = function(itemId) {
+  debug('#fetchOne');
   return new Promise((resolve, reject) => {
     if(!itemId) return reject(createError(400, 'cannot get item; itemId required'));
 
@@ -38,6 +42,7 @@ storage.fetchOne = function(itemId) {
 };
 
 storage.fetchAll = function(schema){
+  debug('#fetchAll');
   return new Promise((resolve, reject) => {
     if(!schema) return reject(createError('cannot get doggos; schema required'));
 
@@ -51,6 +56,7 @@ storage.fetchAll = function(schema){
 };
 
 storage.update = function(schema, item, itemId) {
+  debug('#update');
   return new Promise((resolve, reject) => {
     if(!schema) return reject(createError(400, 'cannot update; schema required'));
     if(!item) return reject(createError(400, 'cannot update; item required'));
@@ -62,6 +68,7 @@ storage.update = function(schema, item, itemId) {
 };
 
 storage.destroy = function(schema, itemId) {
+  debug('#destroy');
   return new Promise((resolve, reject) => {
     if(!schema) return reject(createError(400, 'cannot delete item; schema required'));
     if(!itemId) return reject(createError(400, 'cannot delete item; itemId required'));
