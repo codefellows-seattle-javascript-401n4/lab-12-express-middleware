@@ -7,11 +7,11 @@ const createError = require('http-errors');
 
 
 module.exports = function(router){
-  router.post('/api/doggo', (req, res, next) => {
+  router.post('/api/doggo', (req, res) => {
     debug('/api/doggo POST');
     return storage.create(req.body)
       .then(doggo => res.status(201).json(doggo))
-      .catch(err => next(err));
+      .catch(next);
   });
 
   router.get('/api/doggo/:_id', (req, res, next) => {
