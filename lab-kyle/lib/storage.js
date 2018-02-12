@@ -17,7 +17,7 @@ storage.create = function(item){
 
     let doggo = new Doggo(item.name, item.breed);
 
-    return fs.writeFileProm(`${__dirname}/data/doggo/${doggo._id}.json`, JSON.stringify(doggo))
+    return fs.writeFileProm(`${__dirname}/../data/doggo/${doggo._id}.json`, JSON.stringify(doggo))
       .then(() => resolve(doggo))
       .catch(err => reject(err));
   });
