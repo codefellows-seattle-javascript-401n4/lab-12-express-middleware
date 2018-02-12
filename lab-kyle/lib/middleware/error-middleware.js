@@ -1,20 +1,15 @@
 'use strict';
 
-const app = require('/server.js');
+const createError = require('http-errors');
 
-app.get('/success', (req, res, next) => {
-  res.send('successful GET');
+module.exports = function(err, req, res, next){
+  if(err.status){
+    res.status(err.status).send(err.name);
+    next();
+    return;
+  }
+
+  err = createError(500, err.message);
+  res.status(err.status).send(err.name);
   next();
-});
-
-app.get('/error', (req, res, next) => {
-  return next(new Error('server error!'));
-});
-
-app.use((err, req, res, next) => {
-  console.log(err.message);
-  res.status(500).send('error caught');
-  next();
-});
-
-app.listen(process.env.PORT || 3000);
+};
