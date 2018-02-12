@@ -46,6 +46,7 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "debug": "^3.1.0",
     "eslint": "^4.17.0",
     "jest": "^22.2.2",
     "superagent": "^3.8.2"

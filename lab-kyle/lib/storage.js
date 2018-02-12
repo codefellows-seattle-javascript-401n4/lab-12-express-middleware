@@ -7,7 +7,7 @@ const Doggo = require('../model/doggo');
 
 const storage = module.exports = {};
 
-storage.create = function(schema, item){
+storage.create = function(item){
   return new Promise((resolve, reject) => {
     if(!item.name) return reject(createError(400, 'cannot create; name required'));
     if(!item.breed) return reject(createError(400, 'cannot create; breed required'));

@@ -29,13 +29,13 @@ module.exports = function(router){
 
   router.put('/api/doggo/:_id', (req, res, next) => {
     return storage.update('doggo', req.body, req.params._id)
-      .then(doggo => res.status(204).json('yadid it' + doggo))
+      .then(doggo => res.status(204).json(doggo))
       .catch(next);
   });
 
   router.delete('/api/doggo/:_id', (req, res, next) => {
     return storage.destroy('doggo', req.params._id)
-      .then(() => res.status(204).json('yay'))
+      .then(() => res.status(204).json())
       .catch(err => createError(err.status, err.message), next);
   });
 
