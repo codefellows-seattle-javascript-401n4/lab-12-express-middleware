@@ -11,15 +11,16 @@ const storage = module.exports = {};
 
 storage.create = function(item){
   debug('#create');
+
   return new Promise((resolve, reject) => {
-    if(!item.name) return reject(createError(400, 'cannot create; name required'));
-    if(!item.breed) return reject(createError(400, 'cannot create; breed required'));
+    if(!item.name || typeof item.name !== 'string') return reject(createError(400, 'cannot create;valid name required'));
+    if(!item.breed|| typeof item.breed !== 'string') return reject(createError(400, 'cannot create;valid breed required'));
 
     let doggo = new Doggo(item.name, item.breed);
 
     return fs.writeFileProm(`${__dirname}/../data/doggo/${doggo._id}.json`, JSON.stringify(doggo))
       .then(() => resolve(doggo))
-      .catch(err => reject(err));
+      .catch(reject);
   });
 };
 

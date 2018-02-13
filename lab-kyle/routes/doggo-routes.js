@@ -11,7 +11,7 @@ module.exports = function(router){
     debug('/api/doggo POST');
     return storage.create(req.body)
       .then(doggo => res.status(201).json(doggo))
-      .catch(next);
+      .catch(err => next(err));
   });
 
   router.get('/api/doggo/:_id', (req, res, next) => {
